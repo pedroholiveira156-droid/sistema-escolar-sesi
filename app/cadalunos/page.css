@@ -1,0 +1,100 @@
+main {
+    min-height: calc(100vh - 70px);
+    background: #0a0f14;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+/* Título */
+main h2 {
+    color: #00e5ff;
+    font-size: 32px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+/* Formulário */
+main form {
+    width: 100%;
+    max-width: 500px;
+    background: #111820;
+    padding: 35px;
+    border-radius: 15px;
+    border: 1px solid #263640;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Labels */
+main label {
+    display: block;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    margin-top: 15px;
+}
+
+/* Inputs */
+main input {
+    width: 100%;
+    padding: 13px;
+    background: #0a0f14;
+    border: 1px solid #354650;
+    border-radius: 8px;
+    color: white;
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s;
+}
+
+/* Efeito ao clicar no input */
+main input:focus {
+    border-color: #00e5ff;
+    box-shadow: 0 0 8px rgba(0, 229, 255, 0.25);
+}
+
+/* Placeholder */
+main input::placeholder {
+    color: #687780;
+}
+
+/* Botão */
+main button {
+    width: 100%;
+    margin-top: 25px;
+    padding: 14px;
+    background: #00e5ff;
+    color: #061014;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Hover do botão */
+main button:hover {
+    background: #00bcd4;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 229, 255, 0.3);
+}
+
+/* Quando clicar */
+main button:active {
+    transform: translateY(0);
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    main form {
+        padding: 25px 20px;
+    }
+
+    main h2 {
+        font-size: 26px;
+    }
+}
