@@ -1,60 +1,104 @@
-'use client'
+'use client';
+import { useState, useEffect } from "react";
 import Header from "../components/header";
-import "../listalunos/page.css";
+import styles from "./page.module.css";
+import Link from "next/link";
+import { useRouter} from "next/navigation";
 
-export default function ListAlunos() {
+
+export default function ListAluno() {
+    const [alunos, setAlunos] = useState([]);
+    const router = useRouter();
+
+
+    async function buscarAlunos() {
+        const resposta = await fetch('/api/alunos');
+        const dados = await resposta.json();
+        setAlunos(dados);
+    }
+    useEffect(() => {
+        buscarAlunos()
+    }, [])//toda vez que a tela for recarregada
+
+    function editarAlunos(id){
+        router.push(`/editalunos/${id}`)
+    }
+
+    async function excluiraAluno(event){
+        event.preventDefault();
+        if(!confirm('Deseja realmente excluir este aluno?'))return;
+        const resposta = await fetch("/api/alunos",{
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id_aluno: event.target.dataset.id
+            })
+        })
+        const dados = await resposta.json();
+        alert(dados.mensagem || dados.erro)
+       buscarAlunos();
+    }
+
 
     return (
         <>
             <Header />
 
-            <main className="lista-alunos">
+            <main className={styles.main}>
 
-                <h2>Lista de Alunos</h2>
+                <section className={styles.tituloArea}>
+                    <h2>Lista de Alunos</h2>
 
-                <table>
+                    <p>
+                        Consulte todos os alunos cadastrados no sistema.
+                    </p>
+                </section>
 
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nome</th>
-                            <th>Idade</th>
-                            <th>Série</th>
-                            <th>RA</th>
-                        </tr>
-                    </thead>
+                <section className={styles.tabelaContainer}>
 
-                    <tbody>
+                    <table className={styles.tabela}>
 
-                        <tr>
-                            <td>01</td>
-                            <td>Ana Luiza</td>
-                            <td>17</td>
-                            <td>3B</td>
-                            <td>909030</td>
-                        </tr>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Idade</th>
+                                <th>Série</th>
+                                <th>RA</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
 
-                        <tr>
-                            <td>02</td>
-                            <td>João Pedro</td>
-                            <td>16</td>
-                            <td>2A</td>
-                            <td>909031</td>
-                        </tr>
+                        <tbody>
+                            {alunos.map((aluno) => (
+                                <tr key={aluno.id_aluno}>
+                                    <td>{aluno.id_aluno}</td>
+                                    <td>{aluno.nome}</td>
+                                    <td>{aluno.idade}</td>
+                                    <td>{aluno.serie}</td>
+                                    <td>{aluno.ra}</td>
 
-                        <tr>
-                            <td>03</td>
-                            <td>Gabriel Santos</td>
-                            <td>17</td>
-                            <td>3A</td>
-                            <td>909032</td>
-                        </tr>
+                                    <td>
+                                        <button className={styles.botaoEditar} onClick={(e) => editarAlunos(aluno.id_aluno)}>
+                                            Editar
+                                        </button>
 
-                    </tbody>
+                                        <button className={styles.botaoExcluir} onClick={(e) => excluiraAluno(e)} data-id={aluno.id_aluno}>
+                                            Excluir
+                                        </button>
+                                    </td>
 
-                </table>
+                                </tr>
+                            ))}
+                        </tbody>
+
+                    </table>
+
+                </section>
 
             </main>
         </>
-    )
+    );
 }

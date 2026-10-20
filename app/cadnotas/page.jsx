@@ -13,6 +13,31 @@ export default function Notas() {
     const [n2, setN2] = useState('');
     const [n3, setN3] = useState('');
 
+    async function cadastraAluno(event){
+        event.preventDefault();
+        const resposta = await fetch("/api/alunos", {
+            method:"POST",
+            headers: {
+                "Content-Type" : "application/json"
+            },
+            body: JSON.stringify({
+                nome,
+                idade,
+                serie,
+                ra
+            })
+        })
+        const dados = resposta.json();
+        alert(dados.mensagem || dados.erro)
+        if(reposta.ok){
+            setNome('');
+            setIdade('');
+            setSerie('');
+            setRA('');
+
+        }
+    }
+
     return (
         <>
             <Header />

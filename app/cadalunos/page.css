@@ -1,100 +1,409 @@
-main {
+/* =========================
+   CONFIGURAÇÃO GERAL
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #080d12;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+}
+
+
+/* =========================
+   ÁREA PRINCIPAL
+========================= */
+
+.cadAlunoPage {
     min-height: calc(100vh - 70px);
-    background: #0a0f14;
+    background: #080d12;
+}
+
+.cadAlunoSection {
+    width: 100%;
+    min-height: calc(100vh - 70px);
+    padding: 70px 50px;
+}
+
+
+/* =========================
+   GRID
+========================= */
+
+.cadAlunoGrid {
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 70px;
+
+    align-items: center;
+}
+
+
+/* =========================
+   LADO ESQUERDO
+========================= */
+
+.cadAlunoIntro {
+    padding: 20px;
+}
+
+.sectionLabel {
+    display: inline-block;
+
+    padding: 8px 15px;
+
+    border: 1px solid #00e5ff;
+    border-radius: 20px;
+
+    color: #00e5ff;
+
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.cadAlunoIntro h1 {
+    margin: 25px 0 20px;
+
+    font-size: 55px;
+    line-height: 1.05;
+
+    color: #ffffff;
+}
+
+.cadAlunoIntro h1 span {
+    color: #00e5ff;
+}
+
+.cadAlunoIntro > p {
+    max-width: 500px;
+
+    color: #8c9aa3;
+
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+
+/* =========================
+   INFORMAÇÃO
+========================= */
+
+.cadAlunoInfo {
     display: flex;
-    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 20px;
+
+    margin-top: 45px;
+    padding-top: 25px;
+
+    border-top: 1px solid #26343d;
+}
+
+.cadAlunoInfo > span {
+    color: #00e5ff;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.cadAlunoInfo strong {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 17px;
+}
+
+.cadAlunoInfo p {
+    margin: 0;
+
+    color: #71808a;
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/* =========================
+   FORMULÁRIO
+========================= */
+
+.cadAlunoFormArea {
+    width: 100%;
+
+    padding: 40px;
+
+    background: #10171d;
+
+    border: 1px solid #26343d;
+    border-radius: 15px;
+
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+}
+
+
+/* =========================
+   CABEÇALHO DO FORMULÁRIO
+========================= */
+
+.formHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 35px;
+
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid #26343d;
+}
+
+.formHeader span:first-child {
+    color: #00e5ff;
+
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.formHeader h2 {
+    margin: 7px 0 0;
+
+    color: #ffffff;
+
+    font-size: 27px;
+}
+
+.formNumber {
+    display: flex;
+
     align-items: center;
     justify-content: center;
-    padding: 40px 20px;
-}
 
-/* Título */
-main h2 {
-    color: #00e5ff;
-    font-size: 32px;
-    margin-bottom: 25px;
-    text-align: center;
-}
+    width: 42px;
+    height: 42px;
 
-/* Formulário */
-main form {
-    width: 100%;
-    max-width: 500px;
-    background: #111820;
-    padding: 35px;
-    border-radius: 15px;
-    border: 1px solid #263640;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-}
+    border-radius: 50%;
 
-/* Labels */
-main label {
-    display: block;
-    color: #ffffff;
-    font-size: 15px;
-    font-weight: bold;
-    margin-bottom: 8px;
-    margin-top: 15px;
-}
-
-/* Inputs */
-main input {
-    width: 100%;
-    padding: 13px;
-    background: #0a0f14;
-    border: 1px solid #354650;
-    border-radius: 8px;
-    color: white;
-    font-size: 15px;
-    outline: none;
-    transition: 0.3s;
-}
-
-/* Efeito ao clicar no input */
-main input:focus {
-    border-color: #00e5ff;
-    box-shadow: 0 0 8px rgba(0, 229, 255, 0.25);
-}
-
-/* Placeholder */
-main input::placeholder {
-    color: #687780;
-}
-
-/* Botão */
-main button {
-    width: 100%;
-    margin-top: 25px;
-    padding: 14px;
     background: #00e5ff;
     color: #061014;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
+
+    font-size: 14px;
     font-weight: bold;
-    cursor: pointer;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.cadAlunoForm {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 22px;
+}
+
+
+/* =========================
+   CAMPOS
+========================= */
+
+.formGroup {
+    width: 100%;
+}
+
+.formGroupFull {
+    grid-column: 1 / -1;
+}
+
+.formGroup label {
+    display: block;
+
+    margin-bottom: 9px;
+
+    color: #dce5e9;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.formGroup input {
+    width: 100%;
+
+    padding: 15px 16px;
+
+    background: #080d12;
+
+    border: 1px solid #33444e;
+    border-radius: 8px;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    outline: none;
+
     transition: 0.3s;
 }
 
-/* Hover do botão */
-main button:hover {
-    background: #00bcd4;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 229, 255, 0.3);
+.formGroup input::placeholder {
+    color: #596972;
 }
 
-/* Quando clicar */
-main button:active {
+.formGroup input:focus {
+    border-color: #00e5ff;
+
+    box-shadow:
+        0 0 0 3px rgba(0, 229, 255, 0.08);
+}
+
+
+/* =========================
+   BOTÃO
+========================= */
+
+.formActions {
+    grid-column: 1 / -1;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-top: 10px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid #26343d;
+}
+
+.formActions > span {
+    color: #66757e;
+
+    font-size: 12px;
+}
+
+.formActions button {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 15px;
+
+    padding: 14px 25px;
+
+    background: #00e5ff;
+
+    border: none;
+    border-radius: 8px;
+
+    color: #061014;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.formActions button span {
+    font-size: 20px;
+}
+
+.formActions button:hover {
+    background: #00bfd6;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(0, 229, 255, 0.2);
+}
+
+.formActions button:active {
     transform: translateY(0);
 }
 
-/* Responsividade */
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 1000px) {
+
+    .cadAlunoSection {
+        padding: 50px 25px;
+    }
+
+    .cadAlunoGrid {
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+    }
+
+    .cadAlunoIntro {
+        text-align: center;
+    }
+
+    .cadAlunoIntro > p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .cadAlunoInfo {
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+
+        text-align: left;
+    }
+}
+
+
 @media (max-width: 600px) {
-    main form {
+
+    .cadAlunoSection {
+        padding: 30px 15px;
+    }
+
+    .cadAlunoIntro h1 {
+        font-size: 40px;
+    }
+
+    .cadAlunoFormArea {
         padding: 25px 20px;
     }
 
-    main h2 {
-        font-size: 26px;
+    .cadAlunoForm {
+        grid-template-columns: 1fr;
+    }
+
+    .formGroupFull {
+        grid-column: auto;
+    }
+
+    .formActions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .formActions button {
+        width: 100%;
     }
 }

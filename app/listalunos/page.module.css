@@ -1,0 +1,277 @@
+
+/* =========================
+   CONFIGURAÇÃO GERAL
+========================= */
+
+.main {
+    box-sizing: border-box;
+    min-height: calc(100vh - 70px);
+    padding: 60px 50px;
+
+    background: #080d12;
+    color: #ffffff;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.main * {
+    box-sizing: border-box;
+}
+
+/* =========================
+   TÍTULO DA PÁGINA
+========================= */
+
+.tituloArea {
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto 40px;
+}
+
+.tituloArea h2 {
+    margin: 0 0 15px;
+
+    color: #ffffff;
+    font-size: 42px;
+    font-weight: bold;
+    letter-spacing: -1px;
+}
+
+.tituloArea h2::after {
+    content: "";
+    display: block;
+
+    width: 75px;
+    height: 4px;
+    margin-top: 18px;
+
+    background: #00e5ff;
+    border-radius: 5px;
+}
+
+.tituloArea p {
+    margin: 0;
+
+    color: #8c9aa3;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+/* =========================
+   CONTAINER DA TABELA
+========================= */
+
+.tabelaContainer {
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 25px;
+
+    background: #10171d;
+
+    border: 1px solid #26343d;
+    border-radius: 15px;
+
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+
+    overflow-x: auto;
+}
+
+/* =========================
+   TABELA
+========================= */
+
+.tabela {
+    width: 100%;
+    min-width: 700px;
+
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.tabela thead {
+    background: #080d12;
+}
+
+.tabela th {
+    padding: 20px 18px;
+
+    color: #00e5ff;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+
+    border-bottom: 1px solid #26343d;
+    white-space: nowrap;
+}
+
+.tabela td {
+    padding: 20px 18px;
+
+    color: #dce5e9;
+    font-size: 14px;
+
+    border-bottom: 1px solid #26343d;
+}
+
+.tabela tbody tr {
+    transition: background 0.3s;
+}
+
+.tabela tbody tr:hover {
+    background: rgba(0, 229, 255, 0.04);
+}
+
+.tabela tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* =========================
+   COLUNA ID
+========================= */
+
+.tabela td:first-child {
+    color: #00e5ff;
+    font-weight: bold;
+}
+
+/* =========================
+   BOTÕES DE AÇÃO
+========================= */
+
+.botaoEditar,
+.botaoExcluir {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 85px;
+    padding: 10px 15px;
+    margin: 3px;
+
+    border-radius: 7px;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* BOTÃO EDITAR */
+
+.botaoEditar {
+    background: rgba(0, 229, 255, 0.10);
+
+    border: 1px solid #00e5ff;
+
+    color: #00e5ff;
+}
+
+.botaoEditar:hover {
+    background: #00e5ff;
+    color: #061014;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 5px 15px rgba(0, 229, 255, 0.15);
+}
+
+/* BOTÃO EXCLUIR */
+
+.botaoExcluir {
+    background: rgba(255, 75, 75, 0.08);
+
+    border: 1px solid #ff5555;
+
+    color: #ff6969;
+}
+
+.botaoExcluir:hover {
+    background: #ff5555;
+    color: #ffffff;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 5px 15px rgba(255, 85, 85, 0.15);
+}
+
+.botaoEditar:active,
+.botaoExcluir:active {
+    transform: translateY(0);
+}
+
+/* =========================
+   BARRA DE ROLAGEM
+========================= */
+
+.tabelaContainer::-webkit-scrollbar {
+    height: 8px;
+}
+
+.tabelaContainer::-webkit-scrollbar-track {
+    background: #080d12;
+    border-radius: 10px;
+}
+
+.tabelaContainer::-webkit-scrollbar-thumb {
+    background: #33444e;
+    border-radius: 10px;
+}
+
+.tabelaContainer::-webkit-scrollbar-thumb:hover {
+    background: #00e5ff;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 1000px) {
+    .main {
+        padding: 45px 25px;
+    }
+
+    .tituloArea h2 {
+        font-size: 36px;
+    }
+
+    .tabelaContainer {
+        padding: 18px;
+    }
+}
+
+@media (max-width: 600px) {
+    .main {
+        padding: 30px 15px;
+    }
+
+    .tituloArea {
+        margin-bottom: 25px;
+    }
+
+    .tituloArea h2 {
+        font-size: 30px;
+    }
+
+    .tituloArea p {
+        font-size: 14px;
+    }
+
+    .tabelaContainer {
+        padding: 12px;
+        border-radius: 10px;
+    }
+
+    .tabela th,
+    .tabela td {
+        padding: 15px 12px;
+    }
+
+    .botaoEditar,
+    .botaoExcluir {
+        min-width: 75px;
+        padding: 9px 12px;
+    }
+}
