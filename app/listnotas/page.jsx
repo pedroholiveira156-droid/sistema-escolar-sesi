@@ -1,55 +1,115 @@
-'use client'
+'use client';
+import { useState, useEffect } from "react";
 import Header from "../components/header";
-import "../listnotas/page.css";
+import { useRouter } from "next/navigation";
+import styles from './page.module.css';
 
-export default function ListaNotas() {
+export default function ListNotas() {
+    const [notas, setNotas] = useState([]);
+    const router = useRouter();
+
+    useEffect(() => {
+        buscarNotas()
+    }, [])//toda vez que a tela for recarregada
+
+    async function buscarNotas() {
+        const resposta = await fetch('/api/notas');
+        const dados = await resposta.json();
+
+        setNotas(dados);
+    }
+
+    function editarNota(id_nota) {
+        router.push(`/editanota/${id_nota}`);
+    }
+
+    async function excluirNota(event) {
+        event.preventDefault();
+        if (!confirm("Deseja realmente excluir esta nota?")) {
+            return;
+        }
+        const resposta = await fetch("/api/notas", {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                id_notas: event.target.dataset.id,
+            }),
+        });
+
+        const dados = await resposta.json();
+
+        alert(dados.mensagem || dados.erro);
+
+        buscarNotas();
+    }
+
 
     return (
         <>
             <Header />
 
-            <main className="lista-notas">
+            <main className={styles.main}>
 
-                <h2>Lista de Notas</h2>
+                <section className={styles.tituloArea}>
+                    <h2>Lista de Notas</h2>
 
-                <table>
+                    <p>
+                        Consulte todas as notas cadastradas no sistema.
+                    </p>
+                </section>
 
-                    <thead>
-                        <tr>
-                            <th>Nome aluno</th>
-                            <th>T1</th>
-                            <th>T2</th>
-                            <th>N1</th>
-                            <th>N2</th>
-                            <th>N3</th>
-                        </tr>
-                    </thead>
+                <section className={styles.tabelaContainer}>
 
-                    <tbody>
+                    <table className={styles.tabela}>
 
-                        <tr>
-                            <td>Ana Luiza</td>
-                            <td>8.0</td>
-                            <td>9.0</td>
-                            <td>7.5</td>
-                            <td>8.5</td>
-                            <td>9.0</td>
-                        </tr>
+                        <thead>
+                            <tr>
+                                    <th>ID</th>
+                                    <th>Nome</th>
+                                    <th>Trabalho1</th>
+                                    <th>Trabalho2</th>
+                                    <th>Nota1</th>
+                                    <th>Nota2</th>
+                                    <th>Nota3</th>
+                                    <th>Ações</th>
+                            </tr>
+                        </thead>
 
-                        <tr>
-                            <td>João Pedro</td>
-                            <td>7.0</td>
-                            <td>8.0</td>
-                            <td>8.5</td>
-                            <td>7.5</td>
-                            <td>9.0</td>
-                        </tr>
+                        <tbody>
+                            {notas ? (notas.map((nota) => (
+                                <tr key={nota.id_notas}>
+                                    <td>{nota.id_notas}</td>
+                                    <td>{nota.nome}</td>
+                                    <td>{nota.t1}</td>
+                                    <td>{nota.t2}</td>
+                                    <td>{nota.n1}</td>
+                                    <td>{nota.n2}</td>
+                                    <td>{nota.n3}</td>
+                                    <td>
+                                        <button className={styles.botaoEditar} onClick={() => editarNota(nota.id_notas)}>
+                                            Editar
+                                        </button>
 
-                    </tbody>
+                                        <button className={styles.botaoExcluir} data-id={nota.id_notas} onClick={excluirNota}>
+                                            Excluir
+                                        </button>
+                                    </td>
 
-                </table>
+                                </tr>
+                            ))) : (
+                                <tr>
+                                    <td colSpan="6">Nenhuma nota encontrada.</td>
+                                </tr>
+                            )}
+                        </tbody>
+
+                    </table>
+
+                </section>
 
             </main>
         </>
-    )
+    );
 }
